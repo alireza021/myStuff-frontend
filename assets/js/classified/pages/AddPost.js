@@ -29,7 +29,7 @@ export default class AddPost extends Component {
     this.imageHandler = this.imageHandler.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
 
-    axios.get("http://localhost:8000/api/isloggedin").then(res => {
+    axios.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(res => {
       if (!res.data) {
         return this.setState({ isloggedin: false });
       }
@@ -75,7 +75,7 @@ export default class AddPost extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    axios.post("http://localhost:8000/api/addpost", this.state).then(result => {
+    axios.post("https://webapi-backend.herokuapp.com/api/addpost", this.state).then(result => {
       if (result.data.errors) {
         return this.setState(result.data);
       }

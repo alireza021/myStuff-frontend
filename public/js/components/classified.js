@@ -221,7 +221,7 @@ var Header = function (_Component) {
       userProfile: ""
     };
 
-    _axios2.default.get("http://localhost:8000/api/isloggedin").then(function (res) {
+    _axios2.default.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -238,7 +238,7 @@ var Header = function (_Component) {
 
       var self = this;
       //get details of selected item
-      _axios2.default.get("http://localhost:8000/api/profile").then(function (response) {
+      _axios2.default.get("https://webapi-backend.herokuapp.com/api/profile").then(function (response) {
         // handle success
         self.setState({
           userProfile: response.data
@@ -310,7 +310,7 @@ var Header = function (_Component) {
               "a",
               { className: "signin-btn",
                 onClick: function onClick() {
-                  return _axios2.default.get("http://localhost:8000/api/logout").then(function (res) {
+                  return _axios2.default.get("https://webapi-backend.herokuapp.com/api/logout").then(function (res) {
                     return window.location = "/";
                   });
                 }
@@ -442,7 +442,7 @@ var AddPost = function (_Component) {
     _this.imageHandler = _this.imageHandler.bind(_this);
     _this.handleUpload = _this.handleUpload.bind(_this);
 
-    _axios2.default.get("http://localhost:8000/api/isloggedin").then(function (res) {
+    _axios2.default.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -461,7 +461,7 @@ var AddPost = function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("http://localhost:8000/api/addpost", this.state).then(function (result) {
+      _axios2.default.post("https://webapi-backend.herokuapp.com/api/addpost", this.state).then(function (result) {
         if (result.data.errors) {
           return _this2.setState(result.data);
         }
@@ -902,7 +902,7 @@ var Category = function (_Component) {
       var queryParams = _queryString2.default.parse(this.props.location.search);
 
       //display all items in the category
-      _axios2.default.get("http://localhost:8000/api/categories/" + match.params.category).then(function (response) {
+      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories/" + match.params.category).then(function (response) {
         var newData = response.data.filter(function (item) {
           return item.category == match.params.category;
         });
@@ -1183,7 +1183,7 @@ var Details = function (_Component) {
       var self = this;
 
       //get details of selected item
-      _axios2.default.get("http://localhost:8000/api/categories/" + match.params.category + "/" + match.params.item).then(function (response) {
+      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories/" + match.params.category + "/" + match.params.item).then(function (response) {
         var newData = response.data.filter(function (item) {
           return item._id == match.params.item;
         });
@@ -1386,7 +1386,7 @@ var Home = function (_Component) {
       isloggedin: true
     };
 
-    _axios2.default.get("http://localhost:8000/api/isloggedin").then(function (res) {
+    _axios2.default.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -1404,7 +1404,7 @@ var Home = function (_Component) {
       var self = this;
 
       //get the name of all the catogories
-      _axios2.default.get("http://localhost:8000/api/categories").then(function (response) {
+      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories").then(function (response) {
         // handle success
         self.setState({
           categoriesData: response.data
@@ -1520,7 +1520,7 @@ var Login = function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("http://localhost:8000/api/login", this.state).then(function (res) {
+      _axios2.default.post("https://webapi-backend.herokuapp.com/api/login", this.state).then(function (res) {
         if (res.data.error) {
           return _this2.setState({ error: res.data.message });
         }
@@ -1665,7 +1665,7 @@ var Register = function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("http://localhost:8000/api/register", this.state).then(function (result) {
+      _axios2.default.post("https://webapi-backend.herokuapp.com/api/register", this.state).then(function (result) {
         if (result.data.errors) {
           return _this2.setState(result.data);
         }
@@ -1990,7 +1990,7 @@ var UserItems = function (_Component) {
       var queryParams = _queryString2.default.parse(this.props.location.search);
 
       //display all items in the category
-      _axios2.default.get("http://localhost:8000/api/users/" + match.params.user + "/details").then(function (response) {
+      _axios2.default.get("https://webapi-backend.herokuapp.com/api/users/" + match.params.user + "/details").then(function (response) {
         var newData = response.data.filter(function (user) {
           return user.username == match.params.user;
         });
@@ -2006,7 +2006,7 @@ var UserItems = function (_Component) {
       });
       console.log(this.state.userData);
 
-      _axios2.default.get("http://localhost:8000/api/categories/:category").then(function (response) {
+      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories/:category").then(function (response) {
         var newData = response.data.filter(function (item) {
           return item.user.username == match.params.user;
         });

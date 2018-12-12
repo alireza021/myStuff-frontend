@@ -21,7 +21,7 @@ export default class Login extends Component {
   }
   submitHandler(e) {
     e.preventDefault();
-    axios.post("http://localhost:8000/api/login", this.state).then(res => {
+    axios.post("https://webapi-backend.herokuapp.com/api/login", this.state).then(res => {
       if (res.data.error) {
         return this.setState({ error: res.data.message });
       }

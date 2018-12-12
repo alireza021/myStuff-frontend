@@ -11,7 +11,7 @@ export default class Header extends Component {
       userProfile:"",
     };
 
-    axios.get("http://localhost:8000/api/isloggedin").then(res => {
+    axios.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(res => {
       if (!res.data) {
         return this.setState({ isloggedin: false });
       }
@@ -22,7 +22,7 @@ componentWillMount(){
   const {match, history} = this.props
   const self = this;
     //get details of selected item
-    axios.get(`http://localhost:8000/api/profile`)
+    axios.get(`https://webapi-backend.herokuapp.com/api/profile`)
       .then(function (response) {
         // handle success
         self.setState({
@@ -74,7 +74,7 @@ componentWillMount(){
                 onClick={() =>
                   axios
                     .get(
-                      "http://localhost:8000/api/logout"
+                      "https://webapi-backend.herokuapp.com/api/logout"
                     )
                     .then(res => (window.location = "/"))
                 }

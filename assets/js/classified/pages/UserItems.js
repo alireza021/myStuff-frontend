@@ -18,7 +18,7 @@ export default class UserItems extends Component {
 
     //display all items in the category
       axios
-        .get(`http://localhost:8000/api/users/${match.params.user}/details`)
+        .get(`https://webapi-backend.herokuapp.com/api/users/${match.params.user}/details`)
         .then(function(response) {
           const newData = response.data.filter((user) => {
             return user.username == match.params.user
@@ -41,7 +41,7 @@ export default class UserItems extends Component {
 
 
         axios
-          .get(`http://localhost:8000/api/categories/:category`)
+          .get(`https://webapi-backend.herokuapp.com/api/categories/:category`)
           .then(function(response) {
             const newData = response.data.filter((item) => {
               return item.user.username == match.params.user

@@ -15,7 +15,7 @@ export default class Details extends Component {
     //get details of selected item
     axios
       .get(
-        `http://localhost:8000/api/categories/${match.params.category}/${
+        `https://webapi-backend.herokuapp.com/api/categories/${match.params.category}/${
           match.params.item
         }`
       )
