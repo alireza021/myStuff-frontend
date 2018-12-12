@@ -1,0 +1,113 @@
+.details-page{
+  background: #F7F8FA;
+  padding: 20px 0;
+
+  .white-box{
+   padding: 20px;
+    background: #fff;
+  }
+  .submenu{
+    display: flex;
+    justify-content: space-between;
+    a {
+      color: #2A7DDD;
+      padding: 20px;
+      text-decoration: none;
+    }
+
+    .direction{
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sub-links{
+      display: flex;
+      flex-direction: row;
+
+    }
+
+  }
+  .content-area{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+
+    .media-column{
+      .gallery{
+          .main-image{
+            position: relative;
+            .image-1{
+
+              img{
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center center;
+            }
+          }
+          }
+        }
+      }
+
+
+
+    .details-column{
+      .date{
+        font-size: .9rem;
+        font-weight: 300;
+        color: #424242;
+        margin-bottom: 15px;
+      }
+      .title{
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      .price{
+        font-size: 1.7rem;
+        color: green;
+        font-weight: 500;
+        margin-bottom: 30px;
+      }
+      label{
+        font-weight: 500;
+        font-size: .7rem;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+      }
+      .more-details{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 15px;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #F6F6F7;
+        .info{
+
+        }
+          h5{
+            font-size: .83rem;
+            font-weight: 200;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+
+          }
+          .email{
+            h5{
+            text-transform: lowercase;
+          }
+        }
+      }
+
+      .description{
+        p{
+          color: #424242;
+          line-height: 1.5;
+          font-size: .83rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

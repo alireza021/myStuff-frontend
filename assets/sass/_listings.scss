@@ -1,0 +1,144 @@
+.listings-page{
+
+
+
+  #filter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 50px 0;
+  }
+  .make-model-comp{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .form-group{
+    display: flex;
+    flex-direction: column;
+
+
+    label{
+      font-size: .8rem;
+      font-weight: 500;
+      margin-bottom: .8rem;
+    }
+    select{
+      background: #fff;
+      border-radius: 5px;
+      font-size: 1.3rem;
+      padding: 20px;
+      min-width: 100px;
+      border: 2px solid #ADBED2;
+      color: #1b1b1b;
+      margin-right: 20px;
+    }
+
+    &.button{
+      flex-direction: row;
+      align-items: flex-end;
+    }
+    .primary-btn{
+      padding: 10px 20px;
+      background: #2A7DDD;
+      color: white;
+    }
+
+    .primary-btn, .reset-btn{
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 10px 20px;
+      margin-right: 20px;
+
+    }
+
+    .reset-btn{
+      background: #F7F8fA;
+
+      &.hover{
+        background: #F7F8fA;
+      }
+    }
+  }
+
+  #list-view{
+    background: #F7F8FA;
+    padding: 20px 0;
+
+    .white-box{
+      background: white;
+      padding: 20px;
+
+
+    }
+    .change-view{
+      display: flex;
+      flex-direction: row;
+
+    }
+    .all-items{
+      padding: 20px 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px 20px;
+
+      .item{
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.37);
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+
+        .image{
+          background: url("https://staticshop.o2.co.uk/product/images/iphone-x-space-grey-sku-header.png?cb=25dc5afb0412fc40a28aa29d82cb53d0");
+          height: 250px;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          position: relative;
+          padding: 10px;
+
+          .price{
+            background: #fff;
+            position: absolute;
+            padding: 5px 10px;
+            color: green;
+            border-radius: 3px;
+          }
+        }
+        .details{
+          padding: 10px;
+            position: relative;
+
+          h6{
+            
+            font-size: 0.7rem;
+            color:#565d68;
+            text-transform: capitalize;
+            text-decoration: none;
+          }
+          h5{
+            font-size: 0.9rem;
+            color: #27292d;
+            line-height: 1.5;
+            margin-bottom: 3px;
+            text-transform: capitalize;
+            text-decoration: none;
+
+          }
+          .fa-star{
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            font-size: 1.1rem;
+            &:hover{
+              cursor: pointer;
+              color: gold;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

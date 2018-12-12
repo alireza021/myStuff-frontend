@@ -1,0 +1,157 @@
+@import url( 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import "reset";
+@import "home";
+@import "listings";
+@import "details";
+@import "addpost";
+@import "error";
+@import "login";
+@import "register";
+@import "user";
+
+
+*{
+    box-sizing: border-box;
+
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image:  linear-gradient(105deg, rgba(255,102,232,.4) 0%, rgba(125,229,255,.5) 100%), url("https://images.pexels.com/photos/1681384/pexels-photo-1681384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 115vh;
+}
+
+header{
+  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  color: white;
+
+  .fas{
+    margin-left: 5px;
+  }
+
+  .left-menu{
+    display: flex;
+    .logo{
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      &:hover{
+        color: blue;
+      }
+    }
+    .city-dropdown{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 20px;
+      position: relative;
+      cursor: pointer;
+      .scroll-area{
+        position: absolute;
+        background: rgba(0,0,0,.4);
+        top: 35px;
+        min-width: 130px;
+        left: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        &.active{
+          visibility: visible;
+          top: 50px;
+          opacity: 1;
+        }
+        ul{
+          li{
+            padding: 8px;
+            &:hover{
+              background: rgba(0,0,0,.2);
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  .right-menu{
+    display: flex;
+    .user-img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .user-dropdown{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    .signin-btn{
+      font-weight: 300;
+      text-transform: capitalize;
+      padding: 15px 20px;
+      background: rgba(80, 80, 255, 0.6);
+      color: white;
+      text-decoration: none;
+      margin-left: 53px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      cursor: pointer;
+
+    }
+
+    .profile-btn{
+      font-weight: 300;
+      text-transform: capitalize;
+      padding: 15px 20px;
+      background: rgba(80, 80, 255, 0.6);
+      color: white;
+      text-decoration: none;
+      margin-left: 3px;
+      cursor: pointer;
+
+    }
+
+    .signin-btn:hover{
+      background: rgba(80, 80, 255, 1);
+    }
+
+    .profile-btn:hover{
+      background: rgba(80, 80, 255, 1);
+    }
+    .register-btn{
+      font-weight: 300;
+      text-transform: capitalize;
+      padding: 15px 20px;
+      background: rgba(80, 80, 255, 0.6);
+      color: white;
+      text-decoration: none;
+      margin-left: 3px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      cursor: pointer;
+    }
+    .register-btn:hover{
+      background: rgba(80, 80, 255, 1);
+    }
+  }
+}
+
+.container{
+  max-width: 1000px;
+  margin: 0 auto;
+}
