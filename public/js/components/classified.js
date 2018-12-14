@@ -157,6 +157,8 @@ __webpack_require__(506);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//FIREBASE CONFIG
+
 var config = {
     apiKey: "AIzaSyDKSpvazJheL1E1sACneja6RItnoZH-N0k",
     authDomain: "mystuff-309c8.firebaseapp.com",
@@ -221,7 +223,8 @@ var Header = function (_Component) {
       userProfile: ""
     };
 
-    _axios2.default.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(function (res) {
+    //check if user is logged in
+    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -237,8 +240,8 @@ var Header = function (_Component) {
           history = _props.history;
 
       var self = this;
-      //get details of selected item
-      _axios2.default.get("https://webapi-backend.herokuapp.com/api/profile").then(function (response) {
+      //get details of logged in user for viweing "my profile"
+      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/profile").then(function (response) {
         // handle success
         self.setState({
           userProfile: response.data
@@ -310,7 +313,7 @@ var Header = function (_Component) {
               "a",
               { className: "signin-btn",
                 onClick: function onClick() {
-                  return _axios2.default.get("https://webapi-backend.herokuapp.com/api/logout").then(function (res) {
+                  return _axios2.default.get("https://webapi-frontend.herokuapp.com/api/logout").then(function (res) {
                     return window.location = "/";
                   });
                 }
@@ -442,7 +445,8 @@ var AddPost = function (_Component) {
     _this.imageHandler = _this.imageHandler.bind(_this);
     _this.handleUpload = _this.handleUpload.bind(_this);
 
-    _axios2.default.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(function (res) {
+    //check if user is logged in
+    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -450,18 +454,30 @@ var AddPost = function (_Component) {
     return _this;
   }
 
+  //handles changing of all form elements except image
+
+
   _createClass(AddPost, [{
     key: "changeHandler",
     value: function changeHandler(e) {
       this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
+
+    //handles the changing of image
+
+
+    //this function uploads image to firebase and gets URL
+
   }, {
     key: "submitHandler",
+
+
+    //this function runs when user submits posts
     value: function submitHandler(e) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("https://webapi-backend.herokuapp.com/api/addpost", this.state).then(function (result) {
+      _axios2.default.post("https://webapi-frontend.herokuapp.com/api/addpost", this.state).then(function (result) {
         if (result.data.errors) {
           return _this2.setState(result.data);
         }
@@ -472,9 +488,6 @@ var AddPost = function (_Component) {
         });
       });
     }
-  }, {
-    key: "uploadAndSubmit",
-    value: function uploadAndSubmit(e) {}
   }, {
     key: "render",
     value: function render() {
@@ -499,11 +512,6 @@ var AddPost = function (_Component) {
             _react2.default.createElement(
               "form",
               { className: "addpost-form" },
-              this.state.success && _react2.default.createElement(
-                "p",
-                null,
-                "Your post is now live!"
-              ),
               _react2.default.createElement(
                 "label",
                 null,
@@ -771,6 +779,11 @@ var AddPost = function (_Component) {
                 "button",
                 { onClick: this.submitHandler },
                 "Post"
+              ),
+              this.state.success && _react2.default.createElement(
+                "p",
+                null,
+                "Your post is now live!"
               )
             )
           )
@@ -902,7 +915,7 @@ var Category = function (_Component) {
       var queryParams = _queryString2.default.parse(this.props.location.search);
 
       //display all items in the category
-      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories/" + match.params.category).then(function (response) {
+      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories/" + match.params.category).then(function (response) {
         var newData = response.data.filter(function (item) {
           return item.category == match.params.category;
         });
@@ -1044,6 +1057,11 @@ var Details = function (_Component) {
                     { className: "date" },
                     "Posted: Feb 28th"
                   ),
+                  item.user.username == _this.state.userPosted ? _react2.default.createElement(
+                    "a",
+                    { href: "#" },
+                    "Delete Item"
+                  ) : "",
                   _react2.default.createElement(
                     "h3",
                     { className: "title" },
@@ -1169,7 +1187,15 @@ var Details = function (_Component) {
       }
     };
 
-    _this.state = {};
+    _this.state = {
+      userPosted: ""
+    };
+
+    //check if user is logged in
+    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/profile").then(function (res) {
+      _this.setState({ userPosted: res.data });
+      console.log(_this.state.userPosted);
+    });
     return _this;
   }
 
@@ -1183,7 +1209,7 @@ var Details = function (_Component) {
       var self = this;
 
       //get details of selected item
-      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories/" + match.params.category + "/" + match.params.item).then(function (response) {
+      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories/" + match.params.category + "/" + match.params.item).then(function (response) {
         var newData = response.data.filter(function (item) {
           return item._id == match.params.item;
         });
@@ -1386,7 +1412,8 @@ var Home = function (_Component) {
       isloggedin: true
     };
 
-    _axios2.default.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(function (res) {
+    //check if user is logged in
+    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -1404,7 +1431,7 @@ var Home = function (_Component) {
       var self = this;
 
       //get the name of all the catogories
-      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories").then(function (response) {
+      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories").then(function (response) {
         // handle success
         self.setState({
           categoriesData: response.data
@@ -1509,18 +1536,24 @@ var Login = function (_Component) {
     return _this;
   }
 
+  //handles changing of all form elements
+
+
   _createClass(Login, [{
     key: "changeHandler",
     value: function changeHandler(e) {
       this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
+
+    //this function will run when user tries to log in
+
   }, {
     key: "submitHandler",
     value: function submitHandler(e) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("https://webapi-backend.herokuapp.com/api/login", this.state).then(function (res) {
+      _axios2.default.post("https://webapi-frontend.herokuapp.com/api/login", this.state).then(function (res) {
         if (res.data.error) {
           return _this2.setState({ error: res.data.message });
         }
@@ -1654,18 +1687,24 @@ var Register = function (_Component) {
     return _this;
   }
 
+  //handles changing of all form elements
+
+
   _createClass(Register, [{
     key: "changeHandler",
     value: function changeHandler(e) {
       this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
+
+    //this function will run when user tries to register
+
   }, {
     key: "submitHandler",
     value: function submitHandler(e) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("https://webapi-backend.herokuapp.com/api/register", this.state).then(function (result) {
+      _axios2.default.post("https://webapi-frontend.herokuapp.com/api/register", this.state).then(function (result) {
         if (result.data.errors) {
           return _this2.setState(result.data);
         }
@@ -1856,7 +1895,7 @@ var UserItems = function (_Component) {
         return _this.state.itemsData.map(function (item, i) {
           return _react2.default.createElement(
             "a",
-            { href: "/categories/" + match.params.category + "/" + item._id, className: "item", key: i },
+            { href: "/categories/" + item.category + "/" + item._id, className: "item", key: i },
             _react2.default.createElement(
               "div",
               {
@@ -1989,8 +2028,8 @@ var UserItems = function (_Component) {
       var self = this;
       var queryParams = _queryString2.default.parse(this.props.location.search);
 
-      //display all items in the category
-      _axios2.default.get("https://webapi-backend.herokuapp.com/api/users/" + match.params.user + "/details").then(function (response) {
+      //display all items posted by selected user
+      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/users/" + match.params.user + "/details").then(function (response) {
         var newData = response.data.filter(function (user) {
           return user.username == match.params.user;
         });
@@ -2006,7 +2045,7 @@ var UserItems = function (_Component) {
       });
       console.log(this.state.userData);
 
-      _axios2.default.get("https://webapi-backend.herokuapp.com/api/categories/:category").then(function (response) {
+      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories/:category").then(function (response) {
         var newData = response.data.filter(function (item) {
           return item.user.username == match.params.user;
         });

@@ -5,7 +5,16 @@ import axios from "axios";
 export default class Details extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      userPosted: "",
+    };
+
+    //check if user is logged in
+    axios.get("https://webapi-frontend.herokuapp.com/api/profile").then(res => {
+        this.setState({ userPosted: res.data });
+        console.log(this.state.userPosted)
+      }
+    );
   }
 
   componentWillMount() {
@@ -15,7 +24,7 @@ export default class Details extends Component {
     //get details of selected item
     axios
       .get(
-        `https://webapi-backend.herokuapp.com/api/categories/${match.params.category}/${
+        `https://webapi-frontend.herokuapp.com/api/categories/${match.params.category}/${
           match.params.item
         }`
       )
@@ -47,7 +56,9 @@ export default class Details extends Component {
         return (
           <div className="container" key={i}>
             <div className="white-box">
+
               <section className="content-area">
+
                 <div className="media-column">
                   <div className="gallery">
                     <div className="main-image">
@@ -58,7 +69,9 @@ export default class Details extends Component {
                   </div>
                 </div>
                 <div className="details-column">
+
                   <div className="date">Posted: Feb 28th</div>
+                  {item.user.username == this.state.userPosted ?  <a href="#">Delete Item</a> : ""}
                   <h3 className="title">{item.title}</h3>
                   <h4 className="price">£{item.price}</h4>
                   <div className="more-details">

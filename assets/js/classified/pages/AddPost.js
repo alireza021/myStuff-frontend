@@ -29,19 +29,22 @@ export default class AddPost extends Component {
     this.imageHandler = this.imageHandler.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
 
-    axios.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(res => {
+    //check if user is logged in
+    axios.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(res => {
       if (!res.data) {
         return this.setState({ isloggedin: false });
       }
     });
   }
 
+  //handles changing of all form elements except image
   changeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
+  //handles the changing of image
   imageHandler = e => {
    if (e.target.files[0]) {
      const image = e.target.files[0];
@@ -49,6 +52,7 @@ export default class AddPost extends Component {
    }
  }
 
+ //this function uploads image to firebase and gets URL
  handleUpload = () => {
      const {image} = this.state;
      const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -73,9 +77,10 @@ export default class AddPost extends Component {
    });
  }
 
+ //this function runs when user submits posts
   submitHandler(e) {
     e.preventDefault();
-    axios.post("https://webapi-backend.herokuapp.com/api/addpost", this.state).then(result => {
+    axios.post("https://webapi-frontend.herokuapp.com/api/addpost", this.state).then(result => {
       if (result.data.errors) {
         return this.setState(result.data);
       }
@@ -87,9 +92,7 @@ export default class AddPost extends Component {
     });
   }
 
-  uploadAndSubmit(e){
 
-  }
 
   render() {
     const { match, history } = this.props;
@@ -99,7 +102,7 @@ export default class AddPost extends Component {
         <div className="addpost">
           <div className="form">
             <form className="addpost-form">
-            {this.state.success && <p>Your post is now live!</p>}
+
               <label>
                 <h2>Title:</h2>
                 {this.state.errors &&
@@ -219,6 +222,7 @@ export default class AddPost extends Component {
                 </select>
               </label>
               <button onClick={this.submitHandler} >Post</button>
+              {this.state.success && <p>Your post is now live!</p>}
             </form>
           </div>
         </div>

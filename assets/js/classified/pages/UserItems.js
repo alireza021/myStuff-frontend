@@ -16,9 +16,9 @@ export default class UserItems extends Component {
     const self = this;
     const queryParams = qs.parse(this.props.location.search);
 
-    //display all items in the category
+    //display all items posted by selected user
       axios
-        .get(`https://webapi-backend.herokuapp.com/api/users/${match.params.user}/details`)
+        .get(`https://webapi-frontend.herokuapp.com/api/users/${match.params.user}/details`)
         .then(function(response) {
           const newData = response.data.filter((user) => {
             return user.username == match.params.user
@@ -41,7 +41,7 @@ export default class UserItems extends Component {
 
 
         axios
-          .get(`https://webapi-backend.herokuapp.com/api/categories/:category`)
+          .get(`https://webapi-frontend.herokuapp.com/api/categories/:category`)
           .then(function(response) {
             const newData = response.data.filter((item) => {
               return item.user.username == match.params.user
@@ -71,7 +71,7 @@ export default class UserItems extends Component {
     if (this.state.itemsData != undefined) {
       return this.state.itemsData.map((item, i) => {
         return (
-          <a href={`/categories/${match.params.category}/${item._id}`} className="item" key={i}>
+          <a href={`/categories/${item.category}/${item._id}`} className="item" key={i}>
             <div
               className="image"
               style={{
@@ -79,7 +79,7 @@ export default class UserItems extends Component {
              }}
             >
               <div className="price">£{item.price}</div>
-              
+
             </div>
             <div className="details">
               <i className="far fa-star" />

@@ -11,7 +11,8 @@ export default class Header extends Component {
       userProfile:"",
     };
 
-    axios.get("https://webapi-backend.herokuapp.com/api/isloggedin").then(res => {
+    //check if user is logged in
+    axios.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(res => {
       if (!res.data) {
         return this.setState({ isloggedin: false });
       }
@@ -21,8 +22,8 @@ export default class Header extends Component {
 componentWillMount(){
   const {match, history} = this.props
   const self = this;
-    //get details of selected item
-    axios.get(`https://webapi-backend.herokuapp.com/api/profile`)
+    //get details of logged in user for viweing "my profile"
+    axios.get(`https://webapi-frontend.herokuapp.com/api/profile`)
       .then(function (response) {
         // handle success
         self.setState({
@@ -36,7 +37,6 @@ componentWillMount(){
         console.log(error);
       })
       console.log(this.state.userProfile);
-
 
   }
 
@@ -74,7 +74,7 @@ componentWillMount(){
                 onClick={() =>
                   axios
                     .get(
-                      "https://webapi-backend.herokuapp.com/api/logout"
+                      "https://webapi-frontend.herokuapp.com/api/logout"
                     )
                     .then(res => (window.location = "/"))
                 }

@@ -5,6 +5,8 @@
   .white-box{
    padding: 20px;
     background: #fff;
+
+
   }
   .submenu{
     display: flex;
@@ -52,6 +54,9 @@
 
 
     .details-column{
+      a{
+       text-align: right;
+      }
       .date{
         font-size: .9rem;
         font-weight: 300;

@@ -14,14 +14,17 @@ export default class Login extends Component {
     this.submitHandler = this.submitHandler.bind(this);
   }
 
+  //handles changing of all form elements
   changeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
+
+  //this function will run when user tries to log in
   submitHandler(e) {
     e.preventDefault();
-    axios.post("https://webapi-backend.herokuapp.com/api/login", this.state).then(res => {
+    axios.post("https://webapi-frontend.herokuapp.com/api/login", this.state).then(res => {
       if (res.data.error) {
         return this.setState({ error: res.data.message });
       }

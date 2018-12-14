@@ -17,15 +17,18 @@ export default class Register extends Component {
     this.submitHandler = this.submitHandler.bind(this);
   }
 
+  //handles changing of all form elements
   changeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
+
+  //this function will run when user tries to register
   submitHandler(e) {
     e.preventDefault();
     axios
-      .post("https://webapi-backend.herokuapp.com/api/register", this.state)
+      .post("https://webapi-frontend.herokuapp.com/api/register", this.state)
       .then(result => {
         if (result.data.errors) {
           return this.setState(result.data);
