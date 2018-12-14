@@ -28,7 +28,7 @@ export default class Register extends Component {
   submitHandler(e) {
     e.preventDefault();
     axios
-      .post("https://webapi-frontend.herokuapp.com/api/register", this.state)
+      .post("https://backend-api-web.herokuapp.com/api/register", this.state)
       .then(result => {
         if (result.data.errors) {
           return this.setState(result.data);

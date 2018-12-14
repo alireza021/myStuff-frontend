@@ -17,7 +17,7 @@ export default class Category extends Component {
 
     //display all items in the category
       axios
-        .get(`https://webapi-frontend.herokuapp.com/api/categories/${match.params.category}`)
+        .get(`https://backend-api-web.herokuapp.com/api/categories/${match.params.category}`)
         .then(function(response) {
           const newData = response.data.filter((item) => {
             return item.category == match.params.category

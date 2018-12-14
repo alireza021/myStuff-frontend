@@ -12,7 +12,7 @@ export default class Header extends Component {
     };
 
     //check if user is logged in
-    axios.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(res => {
+    axios.get("https://backend-api-web.herokuapp.com/api/isloggedin").then(res => {
       if (!res.data) {
         return this.setState({ isloggedin: false });
       }
@@ -23,7 +23,7 @@ componentWillMount(){
   const {match, history} = this.props
   const self = this;
     //get details of logged in user for viweing "my profile"
-    axios.get(`https://webapi-frontend.herokuapp.com/api/profile`)
+    axios.get(`https://backend-api-web.herokuapp.com/api/profile`)
       .then(function (response) {
         // handle success
         self.setState({
@@ -74,7 +74,7 @@ componentWillMount(){
                 onClick={() =>
                   axios
                     .get(
-                      "https://webapi-frontend.herokuapp.com/api/logout"
+                      "https://backend-api-web.herokuapp.com/api/logout"
                     )
                     .then(res => (window.location = "/"))
                 }

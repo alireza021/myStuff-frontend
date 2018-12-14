@@ -10,7 +10,7 @@ export default class Details extends Component {
     };
 
     //check if user is logged in
-    axios.get("https://webapi-frontend.herokuapp.com/api/profile").then(res => {
+    axios.get("https://backend-api-web.herokuapp.com/api/profile").then(res => {
         this.setState({ userPosted: res.data });
         console.log(this.state.userPosted)
       }
@@ -24,7 +24,7 @@ export default class Details extends Component {
     //get details of selected item
     axios
       .get(
-        `https://webapi-frontend.herokuapp.com/api/categories/${match.params.category}/${
+        `https://backend-api-web.herokuapp.com/api/categories/${match.params.category}/${
           match.params.item
         }`
       )

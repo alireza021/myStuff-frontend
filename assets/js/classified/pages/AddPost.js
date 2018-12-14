@@ -30,7 +30,7 @@ export default class AddPost extends Component {
     this.handleUpload = this.handleUpload.bind(this);
 
     //check if user is logged in
-    axios.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(res => {
+    axios.get("https://backend-api-web.herokuapp.com/api/isloggedin").then(res => {
       if (!res.data) {
         return this.setState({ isloggedin: false });
       }
@@ -80,7 +80,7 @@ export default class AddPost extends Component {
  //this function runs when user submits posts
   submitHandler(e) {
     e.preventDefault();
-    axios.post("https://webapi-frontend.herokuapp.com/api/addpost", this.state).then(result => {
+    axios.post("https://backend-api-web.herokuapp.com/api/addpost", this.state).then(result => {
       if (result.data.errors) {
         return this.setState(result.data);
       }

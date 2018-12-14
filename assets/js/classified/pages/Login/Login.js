@@ -24,7 +24,7 @@ export default class Login extends Component {
   //this function will run when user tries to log in
   submitHandler(e) {
     e.preventDefault();
-    axios.post("https://webapi-frontend.herokuapp.com/api/login", this.state).then(res => {
+    axios.post("https://backend-api-web.herokuapp.com/api/login", this.state).then(res => {
       if (res.data.error) {
         return this.setState({ error: res.data.message });
       }

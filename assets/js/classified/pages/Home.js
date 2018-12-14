@@ -14,7 +14,7 @@ export default class Home extends Component {
 
 //check if user is logged in
   axios
-      .get("https://webapi-frontend.herokuapp.com/api/isloggedin")
+      .get("https://backend-api-web.herokuapp.com/api/isloggedin")
       .then(res => {
         if (!res.data) {
           return this.setState({ isloggedin: false });
@@ -28,7 +28,7 @@ export default class Home extends Component {
     const self = this;
 
     //get the name of all the catogories
-    axios.get(`https://webapi-frontend.herokuapp.com/api/categories`)
+    axios.get(`https://backend-api-web.herokuapp.com/api/categories`)
       .then(function (response) {
         // handle success
         self.setState({

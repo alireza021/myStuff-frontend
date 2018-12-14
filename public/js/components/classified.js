@@ -224,7 +224,7 @@ var Header = function (_Component) {
     };
 
     //check if user is logged in
-    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(function (res) {
+    _axios2.default.get("https://backend-api-web.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -241,7 +241,7 @@ var Header = function (_Component) {
 
       var self = this;
       //get details of logged in user for viweing "my profile"
-      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/profile").then(function (response) {
+      _axios2.default.get("https://backend-api-web.herokuapp.com/api/profile").then(function (response) {
         // handle success
         self.setState({
           userProfile: response.data
@@ -313,7 +313,7 @@ var Header = function (_Component) {
               "a",
               { className: "signin-btn",
                 onClick: function onClick() {
-                  return _axios2.default.get("https://webapi-frontend.herokuapp.com/api/logout").then(function (res) {
+                  return _axios2.default.get("https://backend-api-web.herokuapp.com/api/logout").then(function (res) {
                     return window.location = "/";
                   });
                 }
@@ -446,7 +446,7 @@ var AddPost = function (_Component) {
     _this.handleUpload = _this.handleUpload.bind(_this);
 
     //check if user is logged in
-    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(function (res) {
+    _axios2.default.get("https://backend-api-web.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -477,7 +477,7 @@ var AddPost = function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("https://webapi-frontend.herokuapp.com/api/addpost", this.state).then(function (result) {
+      _axios2.default.post("https://backend-api-web.herokuapp.com/api/addpost", this.state).then(function (result) {
         if (result.data.errors) {
           return _this2.setState(result.data);
         }
@@ -915,7 +915,7 @@ var Category = function (_Component) {
       var queryParams = _queryString2.default.parse(this.props.location.search);
 
       //display all items in the category
-      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories/" + match.params.category).then(function (response) {
+      _axios2.default.get("https://backend-api-web.herokuapp.com/api/categories/" + match.params.category).then(function (response) {
         var newData = response.data.filter(function (item) {
           return item.category == match.params.category;
         });
@@ -1192,7 +1192,7 @@ var Details = function (_Component) {
     };
 
     //check if user is logged in
-    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/profile").then(function (res) {
+    _axios2.default.get("https://backend-api-web.herokuapp.com/api/profile").then(function (res) {
       _this.setState({ userPosted: res.data });
       console.log(_this.state.userPosted);
     });
@@ -1209,7 +1209,7 @@ var Details = function (_Component) {
       var self = this;
 
       //get details of selected item
-      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories/" + match.params.category + "/" + match.params.item).then(function (response) {
+      _axios2.default.get("https://backend-api-web.herokuapp.com/api/categories/" + match.params.category + "/" + match.params.item).then(function (response) {
         var newData = response.data.filter(function (item) {
           return item._id == match.params.item;
         });
@@ -1413,7 +1413,7 @@ var Home = function (_Component) {
     };
 
     //check if user is logged in
-    _axios2.default.get("https://webapi-frontend.herokuapp.com/api/isloggedin").then(function (res) {
+    _axios2.default.get("https://backend-api-web.herokuapp.com/api/isloggedin").then(function (res) {
       if (!res.data) {
         return _this.setState({ isloggedin: false });
       }
@@ -1431,7 +1431,7 @@ var Home = function (_Component) {
       var self = this;
 
       //get the name of all the catogories
-      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories").then(function (response) {
+      _axios2.default.get("https://backend-api-web.herokuapp.com/api/categories").then(function (response) {
         // handle success
         self.setState({
           categoriesData: response.data
@@ -1553,7 +1553,7 @@ var Login = function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("https://webapi-frontend.herokuapp.com/api/login", this.state).then(function (res) {
+      _axios2.default.post("https://backend-api-web.herokuapp.com/api/login", this.state).then(function (res) {
         if (res.data.error) {
           return _this2.setState({ error: res.data.message });
         }
@@ -1704,7 +1704,7 @@ var Register = function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
-      _axios2.default.post("https://webapi-frontend.herokuapp.com/api/register", this.state).then(function (result) {
+      _axios2.default.post("https://backend-api-web.herokuapp.com/api/register", this.state).then(function (result) {
         if (result.data.errors) {
           return _this2.setState(result.data);
         }
@@ -2029,7 +2029,7 @@ var UserItems = function (_Component) {
       var queryParams = _queryString2.default.parse(this.props.location.search);
 
       //display all items posted by selected user
-      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/users/" + match.params.user + "/details").then(function (response) {
+      _axios2.default.get("https://backend-api-web.herokuapp.com/api/users/" + match.params.user + "/details").then(function (response) {
         var newData = response.data.filter(function (user) {
           return user.username == match.params.user;
         });
@@ -2045,7 +2045,7 @@ var UserItems = function (_Component) {
       });
       console.log(this.state.userData);
 
-      _axios2.default.get("https://webapi-frontend.herokuapp.com/api/categories/:category").then(function (response) {
+      _axios2.default.get("https://backend-api-web.herokuapp.com/api/categories/:category").then(function (response) {
         var newData = response.data.filter(function (item) {
           return item.user.username == match.params.user;
         });
